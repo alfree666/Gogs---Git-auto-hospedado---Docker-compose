@@ -5,8 +5,10 @@ Ver en "localhost:3000"
 
 Configuración:
 
-POSTGRES_PASSWORD=p4ssw0rd
+Host: postgres:5432
 
-HOST: postgres:5432
+Password= p4ssw0rd
+
+
 
 
