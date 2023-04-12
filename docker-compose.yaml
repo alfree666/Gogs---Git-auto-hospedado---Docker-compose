@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+
+    postgres:
+      image: postgres:15
+      container_name: postgres
+      restart: unless-stopped
+      environment:
+        - POSTGRES_USER=gogs
+        - POSTGRES_PASSWORD=gogs
+        - POSTGRES_DB=gogs
+      ports:
+        - "5432:5432"       
+      volumes:
+        - ./db-data:/var/lib/postgresql/data
+
+    gogs:
+      image: gogs/gogs:latest
+      container_name: gogs
+      restart: unless-stopped
+      ports:
+        - "3000:3000"
+        - "10022:22"      
+      links:
+        - postgres
+      environment:
+        - TZ="Europe/Madrid"
+      volumes:
+        - ./gogs-data:/data
+      depends_on:
+        - postgres
+
+
+
+
